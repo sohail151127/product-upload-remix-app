@@ -3,7 +3,7 @@
 client_id = "2352d5ef6c9d467d3f300b024f04e462"
 name = "product-upload-app"
 handle = "product-upload-app-3"
-application_url = "https://anatomy-driver-questionnaire-deborah.trycloudflare.com"
+application_url = "https://bytes-tour-enjoying-qualifying.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://anatomy-driver-questionnaire-deborah.trycloudflare.com/auth/callback",
-  "https://anatomy-driver-questionnaire-deborah.trycloudflare.com/auth/shopify/callback",
-  "https://anatomy-driver-questionnaire-deborah.trycloudflare.com/api/auth/callback"
+  "https://bytes-tour-enjoying-qualifying.trycloudflare.com/auth/callback",
+  "https://bytes-tour-enjoying-qualifying.trycloudflare.com/auth/shopify/callback",
+  "https://bytes-tour-enjoying-qualifying.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

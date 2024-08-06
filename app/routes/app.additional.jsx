@@ -1,83 +1,74 @@
-import {
-  Box,
-  Card,
-  Layout,
-  Link,
-  List,
-  Page,
-  Text,
-  BlockStack,
-} from "@shopify/polaris";
-import { TitleBar } from "@shopify/app-bridge-react";
 
-export default function AdditionalPage() {
-  return (
-    <Page>
-      <TitleBar title="Sohail" />
-      <Layout>
-        <Layout.Section>
-          <Card>
-            <BlockStack gap="300">
-              <Text as="p" variant="bodyMd">
-                The app template comes with an additional page which
-                demonstrates how to create multiple pages within app navigation
-                using{" "}
-                <Link
-                  url="https://shopify.dev/docs/apps/tools/app-bridge"
-                  target="_blank"
-                  removeUnderline
-                >
-                  App Bridge
-                </Link>
-                .
-              </Text>
-              <Text as="p" variant="bodyMd">
-                To create your own page and have it show up in the app
-                navigation, add a page inside <Code>app/routes</Code>, and a
-                link to it in the <Code>&lt;NavMenu&gt;</Code> component found
-                in <Code>app/routes/app.jsx</Code>.
-              </Text>
-            </BlockStack>
-          </Card>
-        </Layout.Section>
-        <Layout.Section variant="oneThird">
-          <Card>
-            <BlockStack gap="200">
-              <Text as="h2" variant="headingMd">
-                Resources
-              </Text>
-              <List>
-                <List.Item>
-                  <Link
-                    url="https://shopify.dev/docs/apps/design-guidelines/navigation#app-nav"
-                    target="_blank"
-                    removeUnderline
-                  >
-                    App nav best practices
-                  </Link>
-                </List.Item>
-              </List>
-            </BlockStack>
-          </Card>
-        </Layout.Section>
-      </Layout>
-    </Page>
-  );
+import { json } from "@remix-run/node";
+import CreateSectionForm from "../components/CreateSectionForm";
+import { create, deleteSingle, getAllData } from "../controllers/sectionStoreController";
+import { useLoaderData } from "@remix-run/react";
+import GetAllData from "../components/GetAllData";
+
+
+export const loader = async() =>{
+  const allData = await getAllData();
+  // console.log("allData:", allData)
+
+  return allData
 }
 
-function Code({ children }) {
+
+export const action = async({request}) =>{
+  console.log("request:",request);
+  console.log("requestDelete:",request)
+  const myFormData = await request.formData();
+  console.log("myFormData:",myFormData)
+  const title = myFormData.get("title");
+  const description = myFormData.get("description")
+  const myId = myFormData.get("id")
+  const myIds = myFormData.get("ids")
+  console.log("title and description and id:", title, description, myId, myIds)
+
+  try {
+  if(title || description || myId){
+   if(title && description ) {
+    const data = await create({title, description})
+    return data || null
+   }
+
+   if(myId ) {
+    const deleteData = await deleteSingle(myId)
+    return deleteData || null
+   
+  }
+
+  // if(myIds ) {
+  //   const deleteAllData = await deleteSelected(myIds)
+  //   return deleteAllData || null
+   
+  // }
+}else{
+  return null
+}
+   
+
+  } catch (error) {
+    console.log(error)
+    return json(error)
+  }
+
+
+
+}
+
+
+
+export default function AdditionalPage() {
+  const allData = useLoaderData();
+  // console.log("allData:", allData)
+
+
+
   return (
-    <Box
-      as="span"
-      padding="025"
-      paddingInlineStart="100"
-      paddingInlineEnd="100"
-      background="bg-surface-active"
-      borderWidth="025"
-      borderColor="border"
-      borderRadius="100"
-    >
-      <code>{children}</code>
-    </Box>
+    <div>
+      <CreateSectionForm />
+      <GetAllData allData={allData} />
+    </div>
   );
 }
