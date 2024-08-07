@@ -1,7 +1,7 @@
 
 import { json } from "@remix-run/node";
 import CreateSectionForm from "../components/CreateSectionForm";
-import { create, deleteSingle, getAllData } from "../controllers/sectionStoreController";
+import { create, deleteSelected, deleteSingle, getAllData } from "../controllers/sectionStoreController";
 import { useLoaderData } from "@remix-run/react";
 import GetAllData from "../components/GetAllData";
 
@@ -22,7 +22,8 @@ export const action = async({request}) =>{
   const title = myFormData.get("title");
   const description = myFormData.get("description")
   const myId = myFormData.get("id")
-  const myIds = myFormData.get("ids")
+  const myIds = JSON.parse(myFormData.get("ids"))
+  
   console.log("title and description and id:", title, description, myId, myIds)
 
   try {
@@ -32,18 +33,27 @@ export const action = async({request}) =>{
     return data || null
    }
 
-   if(myId ) {
+
+}else{
+
+
+
+
+  if(myId ) {
     const deleteData = await deleteSingle(myId)
     return deleteData || null
    
   }
 
-  // if(myIds ) {
-  //   const deleteAllData = await deleteSelected(myIds)
-  //   return deleteAllData || null
+  if(myIds ) {
+    const deleteAllData = await deleteSelected(myIds)
+    return deleteAllData || null
    
-  // }
-}else{
+  }
+
+
+
+
   return null
 }
    

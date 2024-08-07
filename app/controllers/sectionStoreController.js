@@ -56,12 +56,18 @@ export const deleteSingle = async(ids) => {
     }
 }
 
-export const deleteSelected = async(ids) => {
+export const deleteSelected = async(ids=[]) => {
+    console.log("idssssssss:",ids)
+
+    if (ids.length <= 0) {
+        return "id is not found"
+    }
+
     try {
-        let ids = ids? ids : ""
+        
         const res = await prisma.crud.deleteMany({
             where:{id:{
-                contains: id
+                in: ids
             }}
         })
         return res

@@ -68,13 +68,15 @@ export default function GetAllData({allData}){
 
 
 
-    const deleteSelectedItem = () => {
+    const deleteSelectedItem = async() => {
       console.log('deleteSelected button clicked')
-      console.log("allResourcesSelected:", allResourcesSelected)  
+      console.log("selectedResources:", selectedResources)  
       try {
         let myFormData = new FormData();
-        myFormData.append("ids",allResourcesSelected);
+        myFormData.append("ids",JSON.stringify(selectedResources));
         fetcher.submit(myFormData,{method:"post", action:"/app/additional"})
+
+
       } catch (error) {
         console.log("error:",error)
       }
