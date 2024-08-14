@@ -3,7 +3,7 @@
 client_id = "2352d5ef6c9d467d3f300b024f04e462"
 name = "product-upload-app"
 handle = "product-upload-app-3"
-application_url = "https://memory-developing-dont-start.trycloudflare.com"
+application_url = "https://sunny-enterprises-july-scout.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://memory-developing-dont-start.trycloudflare.com/auth/callback",
-  "https://memory-developing-dont-start.trycloudflare.com/auth/shopify/callback",
-  "https://memory-developing-dont-start.trycloudflare.com/api/auth/callback"
+  "https://sunny-enterprises-july-scout.trycloudflare.com/auth/callback",
+  "https://sunny-enterprises-july-scout.trycloudflare.com/auth/shopify/callback",
+  "https://sunny-enterprises-july-scout.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

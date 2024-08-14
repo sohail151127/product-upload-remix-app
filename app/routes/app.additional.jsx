@@ -5,6 +5,7 @@ import { create, createProduct, deleteSelected, deleteSingle, getAllData } from 
 import { useLoaderData } from "@remix-run/react";
 import GetAllData from "../components/GetAllData";
 import { authenticate } from "../shopify.server.js";
+import { DropZoneComponent } from "../components/DropZoneComponent.jsx";
 
 
 export const loader = async({request}) =>{
@@ -86,6 +87,7 @@ export default function AdditionalPage() {
 
   return (
     <div>
+      <DropZoneComponent />
       <CreateSectionForm />
       <GetAllData allData={allData} />
     </div>
