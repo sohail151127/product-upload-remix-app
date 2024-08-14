@@ -1,16 +1,20 @@
 
 import { json } from "@remix-run/node";
 import CreateSectionForm from "../components/CreateSectionForm";
-import { create, deleteSelected, deleteSingle, getAllData } from "../controllers/sectionStoreController";
+import { create, createProduct, deleteSelected, deleteSingle, getAllData } from "../controllers/sectionStoreController";
 import { useLoaderData } from "@remix-run/react";
 import GetAllData from "../components/GetAllData";
+import { authenticate } from "../shopify.server.js";
 
 
-export const loader = async() =>{
+export const loader = async({request}) =>{
   const allData = await getAllData();
-  // console.log("allData:", allData)
+  console.log("allData:", allData)
 
-  return allData
+
+
+
+  return json(allData, {status:200})
 }
 
 
@@ -25,6 +29,11 @@ export const action = async({request}) =>{
   const myIds = JSON.parse(myFormData.get("ids"))
   
   console.log("title and description and id:", title, description, myId, myIds)
+
+  const { session } = await authenticate.admin(request);
+  console.log("sessionsss:", session)
+
+  createProduct(session.accessToken, session.shop)
 
   try {
   if(title || description || myId){
@@ -71,7 +80,7 @@ export const action = async({request}) =>{
 
 export default function AdditionalPage() {
   const allData = useLoaderData();
-  // console.log("allData:", allData)
+  console.log("allData:", allData)
 
 
 

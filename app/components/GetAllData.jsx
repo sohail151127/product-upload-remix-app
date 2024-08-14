@@ -6,7 +6,7 @@ import {  DeleteIcon } from '@shopify/polaris-icons';
 
 export default function GetAllData({allData}){
   const fetcher = useFetcher();
-    console.log("allData:",allData)
+    console.log("allDataaa:",allData)
     // const arrayOfArrays = allData.map(object => Object.values(object));
     // console.log("arrayOfArrays:",arrayOfArrays)
 

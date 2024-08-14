@@ -3,7 +3,7 @@
 client_id = "2352d5ef6c9d467d3f300b024f04e462"
 name = "product-upload-app"
 handle = "product-upload-app-3"
-application_url = "https://ae25-103-251-255-126.ngrok-free.app"
+application_url = "https://memory-developing-dont-start.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://ae25-103-251-255-126.ngrok-free.app/auth/callback",
-  "https://ae25-103-251-255-126.ngrok-free.app/auth/shopify/callback",
-  "https://ae25-103-251-255-126.ngrok-free.app/api/auth/callback"
+  "https://memory-developing-dont-start.trycloudflare.com/auth/callback",
+  "https://memory-developing-dont-start.trycloudflare.com/auth/shopify/callback",
+  "https://memory-developing-dont-start.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
